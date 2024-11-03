@@ -110,8 +110,8 @@ The application features user authentication with JWT, allowing users to securel
 ---
 
 
-## Future Enhancements
+## Enhancements
 
-- **Payment Integration**: Add payment gateways like Stripe or PayPal.
+- **Payment Integration**: Payment gateways integrated using Stripe.
 - **Order Tracking**: Allow users to track their orders in real-time.
 - **Admin Panel**: Implement an admin dashboard for managing products and users.
