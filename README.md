@@ -112,6 +112,8 @@ The application features user authentication with JWT, allowing users to securel
 
 ## Enhancements
 
-- **Payment Integration**: Payment gateways integrated using Stripe.
+- **Payment Integration**: Payment gateways integrated using "Stripe".
+- **Image Upload**: "Cloudinary" is used for uploading images.
 - **Order Tracking**: Allow users to track their orders in real-time.
-- **Admin Panel**: Implement an admin dashboard for managing products and users.
+- **Admin Panel**: Implemented an admin dashboard for managing products and users.
+- **User Panel**: Implemented an user dashboard for tracking order status, reviews, products etc.
