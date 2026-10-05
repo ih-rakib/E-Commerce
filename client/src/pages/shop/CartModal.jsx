@@ -82,9 +82,9 @@ const CartModal = ({ products, isOpen, onCartClose }) => {
                                         </div>
 
                                         <div className="flex items-center justify-start gap-2 pl-9">
-                                            <button onClick={() => handleQuantity('decrement', pid)} aria-label="Decrease quantity" className="size-7 flex items-center justify-center rounded bg-gray-200 text-gray-800 hover:bg-slate-600 hover:text-white">-</button>
+                                            <button onClick={() => handleQuantity('decrement', pid)} aria-label="Decrease quantity" className="size-9 flex items-center justify-center rounded bg-gray-200 text-gray-800 hover:bg-slate-600 hover:text-white text-lg">-</button>
                                             <span className="px-2 min-w-8 text-center" aria-live="polite">{product.quantity}</span>
-                                            <button onClick={() => handleQuantity('increment', pid)} aria-label="Increase quantity" className="size-7 flex items-center justify-center rounded bg-gray-200 text-gray-800 hover:bg-slate-600 hover:text-white">+</button>
+                                            <button onClick={() => handleQuantity('increment', pid)} aria-label="Increase quantity" className="size-9 flex items-center justify-center rounded bg-gray-200 text-gray-800 hover:bg-slate-600 hover:text-white text-lg">+</button>
                                         </div>
                                     </div>
                                     );

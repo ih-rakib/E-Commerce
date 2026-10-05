@@ -73,17 +73,17 @@ const SingleProduct = () => {
                         </div>
 
                         {/* quantity selector */}
-                        <div className="flex items-center gap-3 mt-6">
+                        <div className="flex items-center gap-3 mt-6 flex-wrap">
                             <span className="font-medium">Quantity:</span>
-                            <button type="button" aria-label="Decrease quantity" onClick={() => setQuantity((q) => Math.max(1, q - 1))} className="size-8 rounded bg-gray-200 hover:bg-slate-600 hover:text-white">-</button>
+                            <button type="button" aria-label="Decrease quantity" onClick={() => setQuantity((q) => Math.max(1, q - 1))} className="size-10 rounded bg-gray-200 hover:bg-slate-600 hover:text-white text-lg">-</button>
                             <span aria-live="polite" className="min-w-8 text-center">{quantity}</span>
-                            <button type="button" aria-label="Increase quantity" onClick={() => setQuantity((q) => Math.min(99, q + 1))} className="size-8 rounded bg-gray-200 hover:bg-slate-600 hover:text-white">+</button>
+                            <button type="button" aria-label="Increase quantity" onClick={() => setQuantity((q) => Math.min(99, q + 1))} className="size-10 rounded bg-gray-200 hover:bg-slate-600 hover:text-white text-lg">+</button>
                         </div>
 
                         <button onClick={(e) => {
                             e.stopPropagation();
                             handleAddToCart(singleProduct)
-                        }} className="mt-6 px-6 py-3 bg-green-500 text-white rounded-md hover:bg-green-600">Add to Cart</button>
+                        }} className="mt-6 px-6 py-3 bg-green-500 text-white rounded-md hover:bg-green-600 w-full sm:w-auto">Add to Cart</button>
                     </div>
                 </div>
             </section>

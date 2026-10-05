@@ -43,8 +43,8 @@ const Login = () => {
     }
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-            <div className="w-full max-w-sm bg-white p-8 rounded-lg shadow-lg">
+        <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4 py-8">
+            <div className="w-full max-w-sm bg-white p-6 sm:p-8 rounded-lg shadow-lg">
                 <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
                 <form onSubmit={handleLogin}>
                     <div className="mb-4">
