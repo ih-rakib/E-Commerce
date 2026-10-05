@@ -13,8 +13,10 @@ export default {
       },
       colors: {
         'primary': '#ed3849',
-        'primary-dark': "#d23141",
-        'primary-light': '#f4e5ec',
+        'primary-dark': "#c81f30",
+        'primary-darker': '#a51625',
+        'primary-light': '#fbe9ee',
+        'primary-soft': '#f9d4dc',
         'text-dark': '#0f172a',
         'text-light': '#64748b',
         'extra-light': '#f8fafc'

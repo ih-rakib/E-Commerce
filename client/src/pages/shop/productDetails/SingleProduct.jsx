@@ -25,7 +25,19 @@ const SingleProduct = () => {
         }
     }
 
-    if (isLoading) return <span className="section__container block text-center">Loading...</span>
+    if (isLoading) return (
+        <div className="section__container" aria-busy="true" aria-label="Loading product">
+            <div className="flex flex-col md:flex-row gap-8">
+                <div className="skeleton aspect-square w-full md:w-1/2" />
+                <div className="w-full md:w-1/2 space-y-3">
+                    <div className="skeleton h-8 w-2/3" />
+                    <div className="skeleton h-6 w-1/3" />
+                    <div className="skeleton h-24 w-full" />
+                    <div className="skeleton h-10 w-40 !rounded-md" />
+                </div>
+            </div>
+        </div>
+    )
     if (error) return <span className="section__container block text-center text-red-600">Error loading product...</span>
     if (!data?.product) return <span className="section__container block text-center">Product not found.</span>
 

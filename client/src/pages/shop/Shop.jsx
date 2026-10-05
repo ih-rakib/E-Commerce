@@ -42,7 +42,21 @@ const Shop = () => {
         limit: productsPerPage,
     })
 
-    if (isLoading) return <div className="section__container text-center">Loading...</div>
+    if (isLoading) return (
+        <div className="section__container" aria-busy="true" aria-label="Loading products">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                {[...Array(8)].map((_, i) => (
+                    <div key={i} className="skeleton-card">
+                        <div className="skeleton aspect-[3/4] w-full !rounded-none" />
+                        <div className="p-4 space-y-2">
+                            <div className="skeleton h-4 w-3/4" />
+                            <div className="skeleton h-4 w-1/2" />
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    )
     if (error) return <span className="section__container block text-center text-red-600"> Error loading products</span>
 
     const safeTotal = Number(totalProducts) || 0;
