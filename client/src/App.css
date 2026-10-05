@@ -743,6 +743,87 @@ nav {
   color: #94a3b8;
 }
 
+/* WhatsApp contact row — hero row of the connect column */
+.footer__whatsapp {
+  background: rgba(37, 211, 102, 0.1);
+  border: 1px solid rgba(37, 211, 102, 0.32);
+  border-radius: 10px;
+  padding: 0.65rem 0.75rem;
+  margin-bottom: 0.9rem;
+  align-items: center;
+  transition: transform var(--transition-base), background var(--transition-base), box-shadow var(--transition-base);
+}
+
+.footer__whatsapp:hover {
+  transform: translateY(-2px);
+  background: rgba(37, 211, 102, 0.18);
+  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.25);
+}
+
+.footer__whatsapp span:first-child {
+  background: #25d366;
+  color: #ffffff !important;
+}
+
+.footer__whatsapp strong {
+  display: block;
+  color: var(--white);
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+}
+
+.footer__whatsapp small {
+  display: block;
+  color: #6ee7b7;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* Floating WhatsApp chat button */
+.whatsapp-float {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 40;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.4rem;
+  height: 3.4rem;
+  border-radius: 50%;
+  background: #25d366;
+  color: #ffffff;
+  font-size: 1.9rem;
+  box-shadow: 0 10px 26px rgba(37, 211, 102, 0.45);
+  transition: transform var(--transition-base), box-shadow var(--transition-base), background var(--transition-base);
+}
+
+.whatsapp-float::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid rgba(37, 211, 102, 0.6);
+  animation: whatsappPulse 2.2s ease-out infinite;
+}
+
+.whatsapp-float:hover {
+  transform: translateY(-3px) scale(1.05);
+  background: #1eb856;
+  box-shadow: 0 14px 32px rgba(37, 211, 102, 0.55);
+  color: #ffffff;
+}
+
+.whatsapp-float:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.45);
+}
+
+@keyframes whatsappPulse {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(1.55); opacity: 0; }
+}
+
 .footer__newsletter {
   display: flex;
   flex-direction: column;

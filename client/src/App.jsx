@@ -3,6 +3,7 @@ import { Outlet, useLocation } from 'react-router-dom'
 import './App.css'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import WhatsAppButton from './components/WhatsAppButton'
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -21,6 +22,7 @@ function App() {
         <Outlet></Outlet>
       </main>
       <Footer></Footer>
+      <WhatsAppButton></WhatsAppButton>
     </>
   )
 }

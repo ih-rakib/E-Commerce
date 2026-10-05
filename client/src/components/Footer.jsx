@@ -54,6 +54,18 @@ const Footer = () => {
                     {/* Contact */}
                     <div className="footer__col">
                         <h4>GET IN TOUCH</h4>
+                        <a
+                            href="https://wa.me/8801568041680?text=Hi%20ShopGalore!%20I%20have%20a%20question%20about%20a%20product."
+                            target="_blank"
+                            rel="noreferrer"
+                            className="footer__contact footer__whatsapp"
+                        >
+                            <span aria-hidden="true"><i className="ri-whatsapp-line"></i></span>
+                            <span>
+                                <strong>01568 041680</strong>
+                                <small>Chat on WhatsApp</small>
+                            </span>
+                        </a>
                         <a href="https://maps.google.com/?q=221B+Baker+Street+London" target="_blank" rel="noreferrer" className="footer__contact">
                             <span aria-hidden="true"><i className="ri-map-pin-line"></i></span>
                             221B Baker Street, London
@@ -62,9 +74,9 @@ const Footer = () => {
                             <span aria-hidden="true"><i className="ri-mail-line"></i></span>
                             support@shopgalore.com
                         </a>
-                        <a href="tel:+880123456789" className="footer__contact">
+                        <a href="tel:+8801568041680" className="footer__contact">
                             <span aria-hidden="true"><i className="ri-phone-line"></i></span>
-                            +880 123 456 789
+                            +880 1568 041680
                         </a>
                         <p className="footer__hours">
                             <span aria-hidden="true"><i className="ri-time-line"></i></span>
