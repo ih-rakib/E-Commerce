@@ -1,119 +1,146 @@
-# Ecommerce Application
+# ShopGalore — E-Commerce Application
 
-## Description
+A modern, responsive e-commerce app built with the **MERN stack** (MongoDB, Express, React, Node.js).
+Customers can browse products by category, search, view details with ratings & reviews, and manage
+a persistent cart. Authentication uses **JWT in httpOnly cookies** with role-based access (`user` / `admin`).
 
-This is a modern and responsive Ecommerce application built with the MERN stack (MongoDB, Express, React, and Node.js). It provides a user-friendly interface where customers can browse, search, and purchase a wide range of products, including toys, games, and more.
+## Monorepo layout
 
-The application features user authentication with JWT, allowing users to securely log in and register. Users can explore products by categories, view detailed product information, and manage their shopping experience.
+```
+E-Commerce/
+├── backend/               # Express + Mongoose REST API
+│   ├── index.js           # App bootstrap (CORS, routes, error handling)
+│   └── src/
+│       ├── users/         # User model + auth/user routes
+│       ├── products/      # Product model + routes
+│       ├── reviews/       # Review model + routes
+│       └── middleware/    # generateToken, verifyToken, verifyAdmin
+└── client/                # React + Vite + Tailwind + Redux Toolkit
+    └── src/
+        ├── components/    # Navbar, Footer, Login, Register, Ratings
+        ├── pages/         # home, shop, search, categories, blogs, error
+        ├── redux/         # store, auth/cart/products/reviews slices & APIs
+        ├── routers/       # react-router setup
+        └── utils/         # baseURL, formatDate
+```
 
 ## Features
 
-- **Product Listings**: Browse a variety of products organized into categories.
-- **Product Search**: Quickly search for products by name or category.
-- **Single Product View**: View detailed information for individual products.
-- **User Authentication**: Secure login and registration using JWT for authentication.
-- **Protected Routes**: Certain features are available only to authenticated users.
-- **Responsive Design**: Fully optimized for mobile, tablet, and desktop screens.
-- **Error Handling**: Includes a custom 404 page for incorrect routes.
+- **Shop** — paginated product grid, category + price filters (single- or double-sided), sort by newest
+- **Product details** — image, price, rating, quantity selector, related products, reviews
+- **Reviews** — authenticated 1–5 star ratings with comments (one review per user per product, editable)
+- **Cart** — add/increment/decrement/remove/clear, tax + grand total, **persisted in localStorage**
+- **Auth** — register, login, logout; session in httpOnly cookie; profile updates (owner or admin only)
+- **Admin-only** — create/update/delete products, list/delete users, change user roles
+- **Search** — instant client-side search across name, description and category
+- **Responsive UI** — mobile-first layouts (320px → desktop), hamburger nav, adaptive grids,
+  skeleton loading states, staggered card entrances, hover lift, dark professional footer
+  with socials, contact rows and newsletter signup
+- **Error handling** — custom 404 page, API 404 + central error middleware, form-level validation messages
 
-## Tech Stack
+## Tech stack
 
-- **Frontend**: React, React Router, Tailwind CSS
-- **Backend**: Node.js, Express.js
-- **State Management**: RTK Query for managing state and API requests
-- **Authentication**: JWT (JSON Web Token) for secure authentication
-- **Database**: MongoDB
-- **Image Uploads**: Cloudinary (optional)
+| Layer      | Tech                                                              |
+| ---------- | ----------------------------------------------------------------- |
+| Frontend   | React 18, React Router 6, Tailwind CSS, Redux Toolkit + RTK Query |
+| Backend    | Node.js, Express 4, Mongoose 8, bcrypt, jsonwebtoken              |
+| Auth       | JWT (1h expiry) in httpOnly cookies, `Authorization: Bearer` fallback |
+| Database   | MongoDB (Atlas or local)                                          |
+| Icons      | Remix Icon                                                        |
+| Build      | Vite 5 (client), Nodemon (backend dev)                            |
 
-## API Endpoints
+## Getting started
 
-### Users API
+### Prerequisites
 
-- **Login**
-  - **Endpoint**: `/auth/login`
-  - **Method**: POST
-  - **Description**: Authenticates a user and returns a JWT.
-  
-- **Register**
-  - **Endpoint**: `/auth/register`
-  - **Method**: POST
-  - **Description**: Registers a new user.
-  
-- **Get All Users**
-  - **Endpoint**: `/auth/users`
-  - **Method**: GET
-  - **Description**: Retrieves a list of all users.
-  
-- **Logout**
-  - **Endpoint**: `/auth/logout`
-  - **Method**: POST
-  - **Description**: Logs out the current user.
-  
-- **Delete User**
-  - **Endpoint**: `/auth/users/:id`
-  - **Method**: DELETE
-  - **Description**: Deletes a user by ID.
-  
-- **Update User Role**
-  - **Endpoint**: `/auth/users/:id`
-  - **Method**: PATCH
-  - **Description**: Updates the role of a user by ID.
-  
-- **Update User Profile**
-  - **Endpoint**: `/auth/update-profile`
-  - **Method**: PATCH
-  - **Description**: Updates the current user's profile.
+- Node.js 18+ and npm
+- A MongoDB connection string (Atlas or local `mongod`)
 
----
+### 1. Backend
 
-### Products API
+```bash
+cd backend
+npm install
+cp .env.example .env   # then fill in real values
+npm run start:dev      # or: npm start
+```
 
-- **Create Product**
-  - **Endpoint**: `/products/create-product`
-  - **Method**: POST
-  - **Description**: Creates a new product.
-  
-- **Get All Products**
-  - **Endpoint**: `/products`
-  - **Method**: GET
-  - **Description**: Retrieves a list of all products, can filter by category.
-  
-- **Get Single Product**
-  - **Endpoint**: `/products/:id`
-  - **Method**: GET
-  - **Description**: Retrieves a single product by ID.
-  
-- **Update Product**
-  - **Endpoint**: `/products/update-product/:id`
-  - **Method**: PATCH
-  - **Description**: Updates a product by ID.
-  
-- **Delete Product**
-  - **Endpoint**: `/products/:id`
-  - **Method**: DELETE
-  - **Description**: Deletes a product by ID.
-  
-- **Related Products**
-  - **Endpoint**: `/products/related/:id`
-  - **Method**: GET
-  - **Description**: Retrieves related products based on the provided product ID.
+`backend/.env` (see `.env.example` — **never commit real secrets**):
 
----
+```env
+PORT=3000
+MONGO_URL=mongodb+srv://<user>:<password>@<cluster>/<db>?retryWrites=true&w=majority
+JWT_SECRET_KEY=<long-random-secret>
+CORS_ORIGINS=http://localhost:5173
+NODE_ENV=development
+```
 
-### Reviews API
+> The server only starts listening **after** MongoDB connects, and exits if the connection fails.
 
-- **Post Review**
-  - **Endpoint**: `/reviews/post-review`
-  - **Method**: POST
-  - **Description**: Adds a review for a product.
+### 2. Frontend
 
----
+```bash
+cd client
+npm install
+npm run dev        # http://localhost:5173
+npm run build      # production bundle → dist/
+npm run preview    # preview the production build
+```
 
+Optional `client/.env`:
 
-## Enhancements
+```env
+VITE_API_BASE_URL=http://localhost:3000
+```
 
-- **Payment Integration**: Payment gateways integrated using "Stripe".
-- **Image Upload**: "Cloudinary" is used for uploading images.
-- **Order Tracking**: Allow users to track their orders in real-time.
-- **Admin Panel**: Implemented an admin dashboard for managing products and users.
-- **User Panel**: Implemented an user dashboard for tracking order status, reviews, products etc.
+(Defaults to `http://localhost:3000` when unset.)
+
+## API reference
+
+Base URL: `http://localhost:3000`. All routes return JSON.
+
+### Auth — `/api/auth`
+
+| Method | Endpoint              | Auth          | Description                                    |
+| ------ | --------------------- | ------------- | ---------------------------------------------- |
+| POST   | `/auth/register`      | —             | Register (`username`, `email`, `password` ≥ 6). `409` if email taken |
+| POST   | `/auth/login`         | —             | Login, sets httpOnly `token` cookie, returns `{ token, user }` |
+| POST   | `/auth/logout`        | —             | Clears the auth cookie                         |
+| GET    | `/auth/users`         | Admin         | List users (`_id`, `username`, `email`, `role`), max 200 |
+| DELETE | `/auth/users/:id`     | Admin         | Delete a user                                  |
+| PUT    | `/auth/users/:id`     | Admin         | Set role (`user` \| `admin`, whitelisted)      |
+| PATCH  | `/auth/update-profile`| Owner/Admin   | Update `username`, `profileImg`, `bio`, `profession` |
+
+### Products — `/api/products`
+
+| Method | Endpoint                      | Auth  | Description                                                        |
+| ------ | ----------------------------- | ----- | ------------------------------------------------------------------ |
+| POST   | `/products/create-product`    | Admin | Create product (whitelisted fields; `author` set server-side)      |
+| GET    | `/products`                   | —     | Filter by `category`, `minPrice`/`maxPrice` (either or both); `page`/`limit` (limit ≤ 100) |
+| GET    | `/products/related/:id`       | —     | Up to 10 related products (name match or same category)            |
+| GET    | `/products/:id`               | —     | Single product + populated `reviews`                               |
+| PATCH  | `/products/update-product/:id`| Admin | Update whitelisted fields only                                     |
+| DELETE | `/products/:id`               | Admin | Delete product + its reviews                                       |
+
+### Reviews — `/api/reviews`
+
+| Method | Endpoint                 | Auth       | Description                                              |
+| ------ | ------------------------ | ---------- | -------------------------------------------------------- |
+| POST   | `/reviews/post-review`   | User       | Create/update own review (`comment`, `rating` 1–5); recalcs product average |
+| GET    | `/reviews/total-reviews` | —          | `{ totalReviews }`                                       |
+| GET    | `/reviews/:userId`       | —          | Reviews by user (returns `[]` when none)                 |
+
+### Security notes
+
+- Passwords hashed with bcrypt; hashes never leave the server (`select('-password')`)
+- Login issues tokens **only after** credential verification; generic `401` messages (no user enumeration)
+- Privileged routes require `verifyToken` + `verifyAdmin`; profile/review writes are owner-or-admin
+- Validation: email format + lowercase, role enum, price ≥ 0, rating 1–5, ObjectId checks, NoSQL-filter hardening, regex escaping on related-product search
+
+## Roadmap
+
+- [ ] Stripe checkout + order history
+- [ ] Cloudinary image uploads (replacing URL/base64 strings)
+- [ ] Real admin/user dashboards (placeholder routes exist under `/dashboard/*`)
+- [ ] Wishlist, order tracking, live search against the API
+- [ ] Rate limiting, Helmet headers, refresh-token rotation

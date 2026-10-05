@@ -1,70 +1,127 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import instaImg1 from "../assets/insta-1.jpg"
-import instaImg2 from "../assets/insta-2.jpg"
-import instaImg3 from "../assets/insta-3.jpg"
-import instaImg4 from "../assets/insta-4.jpg"
-import instaImg5 from "../assets/insta-5.jpg"
-import instaImg6 from "../assets/insta-6.jpg"
 
-const instaImages = [
-    { src: instaImg1, alt: "Customer Instagram post 1" },
-    { src: instaImg2, alt: "Customer Instagram post 2" },
-    { src: instaImg3, alt: "Customer Instagram post 3" },
-    { src: instaImg4, alt: "Customer Instagram post 4" },
-    { src: instaImg5, alt: "Customer Instagram post 5" },
-    { src: instaImg6, alt: "Customer Instagram post 6" },
+const socials = [
+    { label: "Facebook", href: "https://facebook.com", icon: "ri-facebook-fill" },
+    { label: "Instagram", href: "https://instagram.com", icon: "ri-instagram-line" },
+    { label: "X (Twitter)", href: "https://x.com", icon: "ri-twitter-x-line" },
+    { label: "LinkedIn", href: "https://linkedin.com", icon: "ri-linkedin-fill" },
+    { label: "YouTube", href: "https://youtube.com", icon: "ri-youtube-fill" },
 ];
 
 const Footer = () => {
+    const [email, setEmail] = useState("");
+    const [subscribed, setSubscribed] = useState(false);
+    const [error, setError] = useState("");
+
+    const handleSubscribe = (e) => {
+        e.preventDefault();
+        setError("");
+        if (!/^\S+@\S+\.\S+$/.test(email.trim())) {
+            setError("Please enter a valid email address.");
+            return;
+        }
+        setSubscribed(true);
+    };
+
     return (
         <>
-            <footer className="section__container footer__container">
-                <div className="footer__col">
-                    <h4>CONTACT INFO</h4>
-                    <p>
-                        <span><i className="ri-map-pin-line"></i></span>
-                        221B Baker Street, London
-                    </p>
-                    <p>
-                        <span><i className="ri-mail-unread-line"></i></span>
-                        support@example.com
-                    </p>
-                    <p>
-                        <span><i className="ri-phone-line"></i></span>
-                        +88 01234567
-                    </p>
-                </div>
+            <footer className="footer__wrapper">
+                <div className="section__container footer__container">
+                    {/* Brand + socials */}
+                    <div className="footer__col footer__brand">
+                        <h4 className="footer__logo">ShopGalore</h4>
+                        <p className="footer__tagline">
+                            Quality toys, fashion and everyday essentials —
+                            curated for you, delivered to your door.
+                        </p>
+                        <div className="footer__socials">
+                            {socials.map((s) => (
+                                <a
+                                    key={s.label}
+                                    href={s.href}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    aria-label={`Follow us on ${s.label}`}
+                                    className="footer__social-btn"
+                                >
+                                    <i className={s.icon} aria-hidden="true"></i>
+                                </a>
+                            ))}
+                        </div>
+                    </div>
 
-                <nav className="footer__col" aria-label="Content">
-                    <h4>CONTENT</h4>
-                    <Link to="/">Home</Link>
-                    <Link to="/shop">Shop</Link>
-                    <Link to="/search">Search</Link>
-                    <Link to="/shop">Trending</Link>
-                    <Link to="/">Terms &amp; Conditions</Link>
-                </nav>
+                    {/* Contact */}
+                    <div className="footer__col">
+                        <h4>GET IN TOUCH</h4>
+                        <a href="https://maps.google.com/?q=221B+Baker+Street+London" target="_blank" rel="noreferrer" className="footer__contact">
+                            <span aria-hidden="true"><i className="ri-map-pin-line"></i></span>
+                            221B Baker Street, London
+                        </a>
+                        <a href="mailto:support@shopgalore.com" className="footer__contact">
+                            <span aria-hidden="true"><i className="ri-mail-line"></i></span>
+                            support@shopgalore.com
+                        </a>
+                        <a href="tel:+880123456789" className="footer__contact">
+                            <span aria-hidden="true"><i className="ri-phone-line"></i></span>
+                            +880 123 456 789
+                        </a>
+                        <p className="footer__hours">
+                            <span aria-hidden="true"><i className="ri-time-line"></i></span>
+                            Mon – Sat, 9:00 – 18:00
+                        </p>
+                    </div>
 
-                <nav className="footer__col" aria-label="Useful links">
-                    <h4>USEFUL LINKS</h4>
-                    <Link to="/search">Help</Link>
-                    <Link to="/shop">Track Your Order</Link>
-                    <Link to="/shop">Categories</Link>
-                    <Link to="/shop">All Products</Link>
-                </nav>
+                    {/* Shop links */}
+                    <nav className="footer__col" aria-label="Shop">
+                        <h4>SHOP</h4>
+                        <Link to="/">Home</Link>
+                        <Link to="/shop">All Products</Link>
+                        <Link to="/search">Search</Link>
+                        <Link to="/categories/toys">Toys</Link>
+                        <Link to="/categories/dress">Fashion</Link>
+                    </nav>
 
-                <div className="footer__col">
-                    <h4>GALLERY</h4>
-                    <div className="instagram__grid">
-                        {instaImages.map((img, i) => (
-                            <img key={i} src={img.src} alt={img.alt} loading="lazy" width={200} height={200} />
-                        ))}
+                    {/* Newsletter */}
+                    <div className="footer__col">
+                        <h4>STAY IN THE LOOP</h4>
+                        <p className="footer__tagline">New arrivals and exclusive deals, once a week. No spam.</p>
+                        {subscribed ? (
+                            <p role="status" className="footer__success">
+                                <i className="ri-checkbox-circle-fill" aria-hidden="true"></i>
+                                You&apos;re on the list. Welcome aboard!
+                            </p>
+                        ) : (
+                            <form onSubmit={handleSubscribe} className="footer__newsletter" noValidate>
+                                <label htmlFor="newsletter-email" className="sr-only">Email address</label>
+                                <input
+                                    id="newsletter-email"
+                                    type="email"
+                                    placeholder="you@example.com"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    className="footer__input"
+                                />
+                                <button type="submit" className="btn footer__btn">
+                                    Subscribe
+                                </button>
+                                {error && <span role="alert" className="footer__error">{error}</span>}
+                            </form>
+                        )}
                     </div>
                 </div>
-            </footer>
 
-            <div className="footer__bar">
-                <span>Copyright @ Rakib | All rights reserved</span>
-            </div>
+                <div className="footer__bar">
+                    <span>© {new Date().getFullYear()} ShopGalore · All rights reserved</span>
+                    <span className="footer__bar-links">
+                        <Link to="/shop">Privacy</Link>
+                        <span aria-hidden="true">·</span>
+                        <Link to="/shop">Terms</Link>
+                        <span aria-hidden="true">·</span>
+                        <Link to="/search">Help</Link>
+                    </span>
+                </div>
+            </footer>
         </>
     )
 }
