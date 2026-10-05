@@ -10,21 +10,25 @@ const productsApi = createApi({
     tagTypes: ["Products"],
     endpoints: (builder) => ({
         fetchAllProducts: builder.query({
-            query: ({ category, minPrice, maxPrice, page = 1, limit = 10 }) => {
-                const queryParams = new URLSearchParams({
-                    category: category || '',
-                    minPrice: minPrice || 0,
-                    maxPrice: maxPrice || '',
-                    page: page.toString(),
-                    limit: limit.toString(),
-                }).toString();
-                return `/?${queryParams}`;
+            query: ({ category, minPrice, maxPrice, page = 1, limit = 10 } = {}) => {
+                const queryParams = new URLSearchParams();
+                if (category) queryParams.set('category', String(category));
+                if (minPrice !== undefined && minPrice !== null && minPrice !== '' && Number.isFinite(Number(minPrice))) {
+                    queryParams.set('minPrice', String(minPrice));
+                }
+                if (maxPrice !== undefined && maxPrice !== null && maxPrice !== '' && Number.isFinite(Number(maxPrice))) {
+                    queryParams.set('maxPrice', String(maxPrice));
+                }
+                queryParams.set('page', String(page));
+                queryParams.set('limit', String(limit));
+                const qs = queryParams.toString();
+                return qs ? `/?${qs}` : '/';
             },
             providesTags: ["Products"]
         }),
 
         fetchProductById: builder.query({
-            query: (id) => `${id}`,
+            query: (id) => `/${id}`,
             providesTags: (result, error, id) => [{ type: "Products", id }]
         }),
 
@@ -44,7 +48,7 @@ const productsApi = createApi({
 
         updateProduct: builder.mutation({
             query: ({ id, ...rest }) => ({
-                url: `update-product/${id}`,
+                url: `/update-product/${id}`,
                 method: "PATCH",
                 body: rest,
                 credentials: "include"

@@ -59,8 +59,15 @@
 }
 
 img {
+  max-width: 100%;
+  display: block;
+}
+
+.product__card img,
+.hero__card img,
+.categories__card img,
+.blog__card img {
   width: 100%;
-  display: flex;
 }
 
 a {
@@ -134,6 +141,7 @@ nav {
   grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
   align-items: center;
+  overflow: hidden;
 }
 
 .header__content {
@@ -148,10 +156,12 @@ nav {
 }
 
 .header__content h1 {
-  font-size: 5rem;
+  font-size: clamp(2.5rem, 6vw + 1rem, 5rem);
   font-weight: 800;
   font-family: var(--header-font);
   color: var(--text-dark);
+  line-height: 1.1;
+  overflow-wrap: break-word;
 }
 
 .header__content p {
@@ -246,7 +256,7 @@ nav {
   max-width: var(--max-width-900);
   margin: 4rem auto;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 2rem;
 }
 
@@ -290,6 +300,7 @@ nav {
   grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
   align-items: center;
+  overflow: hidden;
 }
 
 .deals__image {
@@ -334,6 +345,7 @@ nav {
   display: flex;
   align-items: center;
   gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .deals__countdown__card {
@@ -486,7 +498,7 @@ nav {
   border-top: 2px solid var(--extra-light);
 }
 
-@media (width < 900px) {
+@media (max-width: 900px) {
   .nav__links {
     display: none;
   }
@@ -541,11 +553,11 @@ nav {
   }
 
   .footer__container {
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (width < 600px) {
+@media (max-width: 600px) {
   .categories__grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -559,6 +571,10 @@ nav {
   }
 
   .banner__container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .footer__container {
     grid-template-columns: repeat(1, 1fr);
   }
 

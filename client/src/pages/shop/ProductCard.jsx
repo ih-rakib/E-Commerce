@@ -3,6 +3,8 @@ import Ratings from "../../components/Ratings";
 import { addToCart } from "../../redux/features/cart/cartSlice";
 import { useDispatch } from 'react-redux';
 
+const getId = (product) => product?._id ?? product?.id;
+
 const ProductCard = ({ products }) => {
     const dispatch = useDispatch();
 
@@ -10,25 +12,31 @@ const ProductCard = ({ products }) => {
         dispatch(addToCart(product))
     }
 
-    // console.log(products);
+    if (!products) return <p className="text-center text-gray-500 py-8">Loading products...</p>;
+    if (products.length === 0) return <p className="text-center text-gray-500 py-8">No products found. Try adjusting your filters.</p>;
 
 
     return (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
             {
-                products.map((product, index) => (
-                    <div key={index} className="product__card">
-                        <div className="relative">
-                            <Link to={`/shop/${product._id}`}>
-                                <img src={product.image} alt="product image" className="max-h-96 md:h-64
-                                w-full object-cover hover:scale-105 transition-all duration-300" />
+                products.map((product) => {
+                    const pid = getId(product);
+                    const price = Number(product.price);
+                    return (
+                    <div key={pid} className="product__card">
+                        <div className="relative overflow-hidden rounded-md">
+                            <Link to={`/shop/${pid}`} aria-label={`View ${product.name}`}>
+                                <img src={product.image} alt={product.name ? `${product.name} product image` : "product image"} loading="lazy" className="w-full aspect-[3/4] object-cover hover:scale-105 transition-all duration-300" />
                             </Link>
 
-                            <div className="hover:block absolute top-3 right-3">
-                                <button onClick={(e) => {
-                                    e.stopPropagation();
-                                    handleAddToCart(product)
-                                }}><i className="ri-shopping-cart-line bg-primary p-1.5 text-white hover:bg-primary-dark"></i>
+                            <div className="absolute top-3 right-3">
+                                <button
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        handleAddToCart(product)
+                                    }}
+                                    aria-label={`Add ${product.name || 'product'} to cart`}
+                                ><i className="ri-shopping-cart-line bg-primary p-1.5 text-white hover:bg-primary-dark rounded"></i>
 
                                 </button>
                             </div>
@@ -37,13 +45,14 @@ const ProductCard = ({ products }) => {
                         {/* product description */}
                         <div className="product__card__content">
                             <h4>{product.name}</h4>
-                            <p>${product.price} {product.oldPrice ? <s>${product?.oldPrice}</s> : null}</p>
+                            <p>${Number.isFinite(price) ? price.toFixed(2) : '0.00'} {product.oldPrice ? <s>${Number(product.oldPrice).toFixed(2)}</s> : null}</p>
 
                             {/* rating (star) */}
                             <Ratings rating={product.rating}></Ratings>
                         </div>
                     </div>
-                ))
+                    );
+                })
             }
         </div>
     )

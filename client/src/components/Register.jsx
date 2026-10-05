@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useRegisterUserMutation } from '../redux/features/auth/authApi';
 
@@ -14,22 +14,31 @@ const Register = () => {
 
     const handleRegister = async (e) => {
         e.preventDefault();
+        setMessage('');
+
+        if (username.trim().length < 2) {
+            setMessage("Username must be at least 2 characters long.");
+            return;
+        }
+        if (password.length < 6) {
+            setMessage("Password must be at least 6 characters long.");
+            return;
+        }
 
         const data = {
-            username, email, password
+            username: username.trim(), email: email.trim(), password
         }
 
         try {
             await registerUser(data).unwrap();
-            alert("Registration successful")
             navigate('/login')
         } catch (error) {
-            setMessage("Something went wrong!")
+            setMessage(error?.data?.message || "Something went wrong!")
         }
     }
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-100">
+        <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
             <div className="w-full max-w-sm bg-white p-8 rounded-lg shadow-lg">
                 <h2 className="text-2xl font-bold mb-6 text-center">Register</h2>
                 <form onSubmit={handleRegister}>
@@ -40,7 +49,10 @@ const Register = () => {
                             id="username"
                             name="username"
                             required
+                            minLength={2}
+                            value={username}
                             onChange={(e) => setUsername(e.target.value)}
+                            autoComplete="username"
                             className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-slate-500 focus:border-slate-500"
                         />
                     </div>
@@ -51,7 +63,9 @@ const Register = () => {
                             id="email"
                             name="email"
                             required
+                            value={email}
                             onChange={(e) => setEmail(e.target.value)}
+                            autoComplete="email"
                             className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-slate-500 focus:border-slate-500"
                         />
                     </div>
@@ -62,23 +76,27 @@ const Register = () => {
                             id="password"
                             name="password"
                             required
+                            minLength={6}
+                            value={password}
                             onChange={(e) => setPassword(e.target.value)}
+                            autoComplete="new-password"
                             className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-slate-500 focus:border-slate-500"
                         />
                     </div>
 
                     {
-                        message && <span className='text-red-500'>{message}</span>
+                        message && <span role="alert" className='text-red-500 text-sm block mb-3'>{message}</span>
                     }
                     <button
                         type="submit"
-                        className="w-full bg-slate-700 text-white px-4 py-2 rounded-md hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2"
+                        disabled={registerLoading}
+                        className="w-full bg-slate-700 text-white px-4 py-2 rounded-md hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 disabled:opacity-60"
                     >
-                        Register
+                        {registerLoading ? 'Registering...' : 'Register'}
                     </button>
                 </form>
 
-                <p className='my-5 text-sm text-center'>Don't have an account? <Link to='/login' className='text-red-700 px-1'>Login </Link>here</p>
+                <p className='my-5 text-sm text-center'>Already have an account? <Link to='/login' className='text-red-700 px-1'>Login </Link>here</p>
             </div>
         </div>
     );

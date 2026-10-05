@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link, useNavigate } from "react-router-dom"
 import CartModal from "../pages/shop/CartModal"
@@ -9,10 +9,15 @@ import { logout } from "../redux/features/auth/authSlice";
 
 const Navbar = () => {
     const products = useSelector((state) => state.cart.products)
+    const selectedItems = useSelector((state) => state.cart.selectedItems)
 
     const [isCartOpen, setIsCartOpen] = useState(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const handleCartToggle = () => {
-        setIsCartOpen(!isCartOpen);
+        setIsCartOpen((prev) => !prev);
+    }
+    const handleCartClose = () => {
+        setIsCartOpen(false);
     }
 
     // show user icon if logged in
@@ -26,6 +31,24 @@ const Navbar = () => {
     const handleDropdown = () => {
         setIsDropdownOpen(prevState => !prevState);
     };
+
+    // Close dropdown on Escape + lock body scroll when cart open
+    useEffect(() => {
+        const onKey = (e) => {
+            if (e.key === 'Escape') {
+                setIsDropdownOpen(false);
+                setIsCartOpen(false);
+                setIsMobileMenuOpen(false);
+            }
+        };
+        window.addEventListener('keydown', onKey);
+        return () => window.removeEventListener('keydown', onKey);
+    }, []);
+
+    useEffect(() => {
+        document.body.style.overflow = isCartOpen ? 'hidden' : '';
+        return () => { document.body.style.overflow = ''; };
+    }, [isCartOpen]);
 
     // dropdown: admin
     const adminDropdown = [
@@ -49,6 +72,7 @@ const Navbar = () => {
         try {
             await logoutUser().unwrap()
             dispatch(logout())
+            setIsDropdownOpen(false);
             navigate('/')
         } catch (error) {
             console.error("something went wrong", error)
@@ -57,13 +81,22 @@ const Navbar = () => {
 
 
     return (
-        <header className="fixed-nav-bar w-nav">
+        <header className="sticky top-0 z-40 bg-white shadow-sm">
             <nav className="max-w-screen-2xl mx-auto px-4 flex justify-between items-center">
+                {/* Mobile hamburger */}
+                <button
+                    className="md:hidden text-2xl p-2 -ml-2"
+                    onClick={() => setIsMobileMenuOpen((v) => !v)}
+                    aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+                    aria-expanded={isMobileMenuOpen}
+                >
+                    <i className={isMobileMenuOpen ? "ri-close-line" : "ri-menu-line"}></i>
+                </button>
+
                 <ul className="nav__links">
                     <li className="link"><Link to="/">Home</Link></li>
                     <li className="link"><Link to="/shop">Shop</Link></li>
-                    <li className="link"><Link to="/pages">Pages</Link></li>
-                    <li className="link"><Link to="/contact">Contact</Link></li>
+                    <li className="link"><Link to="/search">Search</Link></li>
                 </ul>
 
                 {/* Logo */}
@@ -73,17 +106,18 @@ const Navbar = () => {
 
                 {/* nav icons */}
                 <div className="nav__icons">
-                    <span><Link to="/search"><i className="ri-search-eye-line"></i></Link></span>
+                    <span><Link to="/search" aria-label="Search products"><i className="ri-search-eye-line"></i></Link></span>
                     <span>
-                        <button onClick={handleCartToggle} className="hover:text-primary"><i className="ri-shopping-bag-4-line"></i>
-                            <sup className="text-xs inline-block px-1.5 text-white rounded-full text-center bg-slate-600">{products.length}</sup>
+                        <button onClick={handleCartToggle} className="hover:text-primary relative" aria-label={`Open cart, ${selectedItems} items`}>
+                            <i className="ri-shopping-bag-4-line"></i>
+                            <sup className="text-xs inline-block px-1.5 text-white rounded-full text-center bg-slate-600">{selectedItems}</sup>
                         </button>
                     </span>
                     <span className="relative">
                         {
                             user ? (<>
-                                <img onClick={handleDropdown} src={user?.profileImg || avatarImg}
-                                    alt={user?.username} className="size-6 rounded-full border cursor-pointer"></img>
+                                <img onClick={handleDropdown} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handleDropdown(); } }} tabIndex={0} src={user?.profileImg || avatarImg}
+                                    alt={`${user?.username || 'User'} profile`} className="size-6 rounded-full border cursor-pointer object-cover"></img>
 
                                 {
                                     isDropdownOpen && (
@@ -96,13 +130,13 @@ const Navbar = () => {
                                                         </li>
                                                     ))
                                                 }
-                                                <li><Link onClick={handleLogout} className="dropdown-items">Logout</Link></li>
+                                                <li><button onClick={handleLogout} className="dropdown-items w-full text-left">Logout</button></li>
                                             </ul>
                                         </div>
                                     )
                                 }
                             </>) : (
-                                <Link to="/login">
+                                <Link to="/login" aria-label="Login">
                                     <i className="ri-user-3-line"></i>
                                 </Link>
                             )
@@ -111,8 +145,17 @@ const Navbar = () => {
                 </div>
             </nav>
 
+            {/* Mobile menu */}
+            {isMobileMenuOpen && (
+                <ul className="md:hidden px-6 pb-4 space-y-3 bg-white border-t">
+                    <li><Link to="/" onClick={() => setIsMobileMenuOpen(false)} className="block py-1">Home</Link></li>
+                    <li><Link to="/shop" onClick={() => setIsMobileMenuOpen(false)} className="block py-1">Shop</Link></li>
+                    <li><Link to="/search" onClick={() => setIsMobileMenuOpen(false)} className="block py-1">Search</Link></li>
+                </ul>
+            )}
+
             {
-                isCartOpen && <CartModal products={products} isOpen={isCartOpen} onCartClose={handleCartToggle}></CartModal>
+                isCartOpen && <CartModal products={products} isOpen={isCartOpen} onCartClose={handleCartClose}></CartModal>
             }
         </header>
     )

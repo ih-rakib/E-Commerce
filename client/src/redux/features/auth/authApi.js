@@ -39,8 +39,7 @@ const authApi = createApi({
                 url: "/users",
                 method: "GET"
             }),
-            refetchOnMount: true,
-            invalidatesTags: ["User"]
+            providesTags: ["User"]
         }),
 
         deleteUser: builder.mutation({
@@ -58,7 +57,6 @@ const authApi = createApi({
                 method: "PUT",
                 body: { role }
             }),
-            refetchOnMount: true,
             invalidatesTags: ["User"]
         }),
 
@@ -68,6 +66,7 @@ const authApi = createApi({
                 method: "PATCH",
                 body: profileData
             }),
+            invalidatesTags: ["User"],
         }),
 
     })

@@ -7,27 +7,34 @@ const TrendingProducts = () => {
 
     // Query to fetch products
     const { data: { products = [], totalProducts = 0 } = {}, error, isLoading } = useFetchAllProductsQuery({
+        page: 1,
         limit: visibleProducts,
     });
 
     const loadMoreProducts = () => {
-        setVisibleProducts((prev) => prev + 5);
+        setVisibleProducts((prev) => prev + 4);
     };
 
-    if (isLoading) return <div>Loading...</div>;
-    if (error) return <span>Error loading products</span>;
+    if (isLoading) return <div className="section__container text-center">Loading...</div>;
+    if (error) return <span className="section__container block text-center text-red-600">Error loading products</span>;
+
+    const total = Number(totalProducts) || 0;
 
     return (
         <section className="section__container product__container">
             <h2 className="section__header">Trending Products</h2>
-            <p className="section__subheader">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius corporis sicing elit. Eius corporissicing elit. Eius corporis</p>
+            <p className="section__subheader">Check out our most popular products right now.</p>
 
             {/* Product cards */}
-            <ProductCard products={products.slice(0, visibleProducts)} />
+            {products.length === 0 ? (
+                <p className="text-center text-gray-500 py-8">No trending products available.</p>
+            ) : (
+                <ProductCard products={products} />
+            )}
 
             {/* Load more products */}
             <div className="product__btn">
-                {visibleProducts < totalProducts && (
+                {total > 0 && visibleProducts < total && (
                     <button className="btn" onClick={loadMoreProducts}>Load More</button>
                 )}
             </div>
