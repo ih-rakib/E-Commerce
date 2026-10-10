@@ -15,9 +15,10 @@ const reviewsApi = createApi({
         url: "/post-review",
         method: "POST",
         body: reviewData,
+        credentials: "include",
       }),
-      invalidatesTags: (result, error, { postId }) => [
-        { type: "Reviews", id: postId },
+      invalidatesTags: (result, error, arg) => [
+        { type: "Reviews", id: arg?.productId ?? arg?.postId ?? "LIST" },
       ],
     }),
 
@@ -30,9 +31,11 @@ const reviewsApi = createApi({
     getReviewByUserId: builder.query({
       query: (userId) => ({
         url: `/${userId}`,
+        credentials: "include",
       }),
-      providesTags: (result) =>
-        result ? [{ type: "Reviews", id: result[0]?.email }] : [],
+      providesTags: (result, error, userId) => [
+        { type: "Reviews", id: userId },
+      ],
     }),
   }),
 });

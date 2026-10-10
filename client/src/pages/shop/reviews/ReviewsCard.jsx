@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import commentorImg from '../../../assets/avatar1.png';
 import { formateDate } from '../../../utils/formatDate';
 import Ratings from '../../../components/Ratings';
@@ -18,22 +18,22 @@ const ReviewsCard = ({ productReviews }) => {
     }
 
     return (
-        <div className='my-6 bg-white p-8'>
+        <div className='my-6 bg-white p-4 sm:p-6 md:p-8 rounded-lg'>
             {reviews.length > 0 ? (
                 <div>
                     <h3 className='text-lg font-medium'>Reviews: </h3>
                     <div>
-                        {reviews.map((review, index) => (
-                            <div key={index} className='mt-4'>
+                        {reviews.map((review) => (
+                            <div key={review?._id || review?.id || `${review?.userId?._id}-${review?.createdAt}`} className='mt-4'>
                                 <div className='flex gap-4 items-center'>
-                                    <img src={commentorImg} alt="" className='size-14' />
+                                    <img src={commentorImg} alt={`${review?.userId?.username || 'Reviewer'} avatar`} className='size-14 rounded-full object-cover' loading="lazy" />
                                     <div className='space-y-1'>
-                                        <p className='text-lg font-medium underline capitalize underline-offset-4 text-blue-500'>{review?.userId?.username}</p>
+                                        <p className='text-lg font-medium capitalize text-slate-800'>{review?.userId?.username || 'Anonymous'}</p>
                                         <p className='text-sm italic'>{formateDate(review?.createdAt)}</p>
-                                        <Ratings>{review?.rating}</Ratings>
+                                        <Ratings rating={review?.rating} />
                                     </div>
                                 </div>
-                                <div className='text-gray-600 mt-5 border p-8 md:w-4/5'>
+                                <div className='text-gray-600 mt-5 border p-4 md:p-6 w-full md:w-4/5 break-words'>
                                     <p>{review?.comment}</p>
                                 </div>
                             </div>
