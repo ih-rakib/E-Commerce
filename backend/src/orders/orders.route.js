@@ -26,8 +26,8 @@ router.post("/create-checkout-session", async (req, res) => {
       payment_method_types: ["card"],
       line_items: lineItems,
       mode: "payment",
-      success_url: `https://e-commerce-client-rosy.vercel.app/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `https://e-commerce-client-rosy.vercel.app/cancel`,
+      success_url: `https://orion-tcommerce.vercel.app/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `https://orion-tcommerce.vercel.app/cancel`,
     });
 
     res.json({ id: session.id });

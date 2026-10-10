@@ -22,7 +22,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 const allowedOrigins = (
   process.env.CORS_ORIGINS ||
-  "http://localhost:5173,https://e-commerce-client-rosy.vercel.app"
+  "http://localhost:5173,https://orion-tcommerce.vercel.app,https://e-commerce-client-rosy.vercel.app"
 )
   .split(",")
   .map((s) => s.trim())
