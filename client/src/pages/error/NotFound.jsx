@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import BackButton from "../../components/BackButton";
 
 const NotFound = () => {
   return (
@@ -11,12 +12,18 @@ const NotFound = () => {
         Sorry, the page you're looking for doesn't exist or has been moved. Try
         heading back to the homepage.
       </p>
-      <Link
-        to="/"
-        className="mt-6 text-white bg-blue-500 hover:bg-blue-600 px-6 py-2 rounded-lg"
-      >
-        Back to Home
-      </Link>
+      <div className="mt-6 flex items-center gap-4">
+        <BackButton
+          label="Go back"
+          variant="button"
+        />
+        <Link
+          to="/"
+          className="text-white bg-blue-500 hover:bg-blue-600 px-6 py-2 rounded-lg"
+        >
+          Back to Home
+        </Link>
+      </div>
     </div>
   );
 };

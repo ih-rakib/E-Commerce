@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useRegisterUserMutation } from '../redux/features/auth/authApi';
+import BackButton from './BackButton';
 
 const Register = () => {
   const [message, setMessage] = useState("");
@@ -41,6 +42,7 @@ const Register = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4 py-8">
       <div className="w-full max-w-sm bg-white p-6 sm:p-8 rounded-lg shadow-lg">
+        <BackButton className="mb-4" />
         <h2 className="text-2xl font-bold mb-6 text-center">Register</h2>
         <form onSubmit={handleRegister}>
           <div className="mb-4">
