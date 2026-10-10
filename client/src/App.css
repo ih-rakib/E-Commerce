@@ -233,7 +233,9 @@ nav {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
-  margin-top: 100px;
+  margin-top: 0;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
   align-items: center;
   overflow: hidden;
 }
@@ -932,6 +934,7 @@ nav {
   .header__container {
     grid-template-columns: repeat(1, 1fr);
     min-height: auto;
+    padding-top: 1.5rem;
     padding-bottom: 2rem;
   }
 
