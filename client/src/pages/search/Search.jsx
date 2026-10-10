@@ -31,8 +31,8 @@ const Search = () => {
             <section className="section__container">
                 <form onSubmit={handleSearch} className="w-full mb-12 flex flex-col md:flex-row items-center justify-center gap-4" role="search">
                     <label htmlFor="site-search" className="sr-only">Search for products</label>
-                    <input id="site-search" type="search" placeholder="Search for products" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} className="w-full max-w-4xl p-2 border rounded focus:outline-none focus:ring-2 focus:ring-primary" />
-                    <button type="submit" className="w-full md:w-auto py-2 px-8 bg-primary text-white rounded hover:bg-primary-dark">Search</button>
+                    <input id="site-search" type="search" placeholder="Search for products" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} className="w-full max-w-4xl p-2 min-h-[44px] border rounded focus:outline-none focus:ring-2 focus:ring-primary" />
+                    <button type="submit" className="w-full md:w-auto py-2 px-8 min-h-[44px] bg-primary text-white rounded hover:bg-primary-dark">Search</button>
                 </form>
 
                 {submittedQuery && filteredProducts.length === 0 ? (

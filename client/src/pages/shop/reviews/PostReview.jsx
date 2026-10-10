@@ -84,7 +84,7 @@ const PostReview = ({ isModalOpen, handleCloseReviewModal }) => {
       aria-label="Give a review"
     >
       <div
-        className="bg-white p-6 rounded-md shadow-lg w-full max-w-md z-50"
+        className="bg-white p-4 sm:p-6 rounded-md shadow-lg w-full max-w-md max-h-[90vh] overflow-y-auto z-50"
         onClick={(e) => e.stopPropagation()}
       >
         <h2 className="text-lg font-medium mb-4">Give a Review</h2>
@@ -105,7 +105,7 @@ const PostReview = ({ isModalOpen, handleCloseReviewModal }) => {
               aria-label={`Rate ${star} star${star > 1 ? "s" : ""}`}
               aria-checked={rating === star}
               role="radio"
-              className="cursor-pointer text-yellow-500 text-2xl p-1 focus:outline-none focus:ring-2 focus:ring-yellow-400 rounded"
+              className="cursor-pointer text-yellow-500 text-2xl p-2 min-w-[44px] min-h-[44px] inline-flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-yellow-400 rounded"
             >
               {(hovered || rating) >= star ? (
                 <i className="ri-star-fill"></i>
@@ -134,11 +134,11 @@ const PostReview = ({ isModalOpen, handleCloseReviewModal }) => {
           </p>
         )}
 
-        <div className="flex justify-end gap-2">
+        <div className="flex flex-col-reverse sm:flex-row sm:justify-end gap-2">
           <button
             type="button"
             onClick={closeAndReset}
-            className="px-4 py-2 bg-gray-300 rounded-md"
+            className="px-4 py-2 min-h-[44px] bg-gray-300 rounded-md"
           >
             Cancel
           </button>
@@ -146,7 +146,7 @@ const PostReview = ({ isModalOpen, handleCloseReviewModal }) => {
             type="button"
             onClick={handleSubmit}
             disabled={isLoading}
-            className="px-4 py-2 bg-green-500 text-white rounded-md disabled:opacity-60"
+            className="px-4 py-2 min-h-[44px] bg-green-500 text-white rounded-md disabled:opacity-60"
           >
             {isLoading ? "Submitting..." : "Submit"}
           </button>

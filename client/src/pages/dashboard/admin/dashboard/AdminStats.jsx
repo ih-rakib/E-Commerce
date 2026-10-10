@@ -4,26 +4,26 @@ const AdminStats = ({ stats }) => {
   console.log(stats);
   return (
     <div className="my-5 space-y-4">
-      <div className="grid gap-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1">
-        <div className="bg-white shadow-md rounded-lg p-6 border border-gray-200 hover:scale-105 transition-all duration-200 cursor-pointer">
-          <h2 className="text-xl font-semibold mb-2">Total Earnings</h2>
-          <p className="text-2xl font-bold">${stats.totalEarnings}</p>
+      <div className="grid gap-3 sm:gap-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1">
+        <div className="bg-white shadow-md rounded-lg p-4 sm:p-6 border border-gray-200 hover:scale-105 transition-all duration-200 cursor-pointer min-w-0">
+          <h2 className="text-base sm:text-xl font-semibold mb-2">Total Earnings</h2>
+          <p className="text-xl sm:text-2xl font-bold break-words">${stats.totalEarnings}</p>
         </div>
-        <div className="bg-white shadow-md rounded-lg p-6 border border-gray-200 hover:scale-105 transition-all duration-200 cursor-pointer">
-          <h2 className="text-xl font-semibold mb-2">Total Products</h2>
-          <p className="text-2xl font-bold">{stats.totalProducts}</p>
+        <div className="bg-white shadow-md rounded-lg p-4 sm:p-6 border border-gray-200 hover:scale-105 transition-all duration-200 cursor-pointer min-w-0">
+          <h2 className="text-base sm:text-xl font-semibold mb-2">Total Products</h2>
+          <p className="text-xl sm:text-2xl font-bold break-words">{stats.totalProducts}</p>
         </div>
-        <div className="bg-white shadow-md rounded-lg p-6 border border-gray-200 hover:scale-105 transition-all duration-200 cursor-pointer">
-          <h2 className="text-xl font-semibold mb-2">Total Orders</h2>
-          <p className="text-2xl font-bold">{stats.totalOrders}</p>
+        <div className="bg-white shadow-md rounded-lg p-4 sm:p-6 border border-gray-200 hover:scale-105 transition-all duration-200 cursor-pointer min-w-0">
+          <h2 className="text-base sm:text-xl font-semibold mb-2">Total Orders</h2>
+          <p className="text-xl sm:text-2xl font-bold break-words">{stats.totalOrders}</p>
         </div>
-        <div className="bg-white shadow-md rounded-lg p-6 border border-gray-200 hover:scale-105 transition-all duration-200 cursor-pointer">
-          <h2 className="text-xl font-semibold mb-2">Total Users</h2>
-          <p className="text-2xl font-bold">{stats.totalUsers}</p>
+        <div className="bg-white shadow-md rounded-lg p-4 sm:p-6 border border-gray-200 hover:scale-105 transition-all duration-200 cursor-pointer min-w-0">
+          <h2 className="text-base sm:text-xl font-semibold mb-2">Total Users</h2>
+          <p className="text-xl sm:text-2xl font-bold break-words">{stats.totalUsers}</p>
         </div>
-        <div className="bg-white shadow-md rounded-lg p-6 border border-gray-200 hover:scale-105 transition-all duration-200 cursor-pointer">
-          <h2 className="text-xl font-semibold mb-2">Total Reviews</h2>
-          <p className="text-2xl font-bold">{stats.totalReviews}</p>
+        <div className="bg-white shadow-md rounded-lg p-4 sm:p-6 border border-gray-200 hover:scale-105 transition-all duration-200 cursor-pointer min-w-0">
+          <h2 className="text-base sm:text-xl font-semibold mb-2">Total Reviews</h2>
+          <p className="text-xl sm:text-2xl font-bold break-words">{stats.totalReviews}</p>
         </div>
       </div>
     </div>

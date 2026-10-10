@@ -71,9 +71,9 @@ const UploadImage = ({ name, setImage }) => {
       )}
       {error && <div className="text-sm mt-2 text-red-600">{error}</div>}
       {url && (
-        <div className="text-sm mt-2 text-green-600">
+        <div className="text-sm mt-2 text-green-600 min-w-0">
           <p>Image Uploaded Successfully!</p>
-          <img src={url} alt="uploaded image" />
+          <img src={url} alt="uploaded image" className="max-w-full h-auto rounded-md" />
         </div>
       )}
     </div>

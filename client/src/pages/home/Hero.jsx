@@ -24,7 +24,7 @@ const Hero = () => {
           <div className="hero__content">
             <p>{card.trend}</p>
             <h4>{card.title}</h4>
-            <Link to="/shop">Discover More</Link>
+            <Link to="/shop" className="inline-block py-2 min-h-[44px]">Discover More</Link>
           </div>
         </div>
       ))}

@@ -25,13 +25,13 @@ const UserReviews = () => {
   };
 
   return (
-    <div className="py-6">
-      <h2 className="text-2xl font-bold mb-4">Reviews: {reviews.length}</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mt-8 gap-7">
+    <div className="py-6 min-w-0 max-w-full">
+      <h2 className="text-xl sm:text-2xl font-bold mb-4">Reviews: {reviews.length}</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mt-6 sm:mt-8 gap-4 sm:gap-7">
         {reviews.map((review, index) => (
           <div
             key={index}
-            className="bg-white shadow-md rounded-lg p-4 border-gray-200 cursor-pointer hover:scale-105 transition-all duration-200"
+            className="bg-white shadow-md rounded-lg p-4 border-gray-200 cursor-pointer hover:scale-105 transition-all duration-200 min-w-0 overflow-hidden break-words"
           >
             <p className="text-lg font-semibold mb-2">
               Rating: {review?.rating}
@@ -39,10 +39,10 @@ const UserReviews = () => {
             <p className="mb-2">
               <strong>Comment: </strong> {review?.comment}
             </p>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-gray-500 break-all">
               <strong>Product Id: </strong> {review?.productId}
             </p>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-gray-500 break-all">
               <strong>Date: </strong>{" "}
               {new Date(review?.createdAt).toLocaleDateString()}
             </p>

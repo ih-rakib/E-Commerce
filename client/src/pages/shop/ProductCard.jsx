@@ -17,7 +17,7 @@ const ProductCard = ({ products }) => {
 
 
     return (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-8">
             {
                 products.map((product) => {
                     const pid = getId(product);
@@ -36,6 +36,7 @@ const ProductCard = ({ products }) => {
                                         handleAddToCart(product)
                                     }}
                                     aria-label={`Add ${product.name || 'product'} to cart`}
+                                    className="min-w-[44px] min-h-[44px] inline-flex items-center justify-center"
                                 ><i className="ri-shopping-cart-line bg-primary p-1.5 text-white hover:bg-primary-dark rounded"></i>
 
                                 </button>

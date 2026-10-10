@@ -58,24 +58,24 @@ const UserProfile = () => {
   }, [user]);
 
   return (
-    <div className="container mx-auto p-7">
-      <div className="bg-white shadow-md rounded-lg p-7">
-        <div className="flex items-center mb-4">
+    <div className="container mx-auto p-4 sm:p-7 min-w-0 max-w-full">
+      <div className="bg-white shadow-md rounded-lg p-4 sm:p-7">
+        <div className="flex flex-col sm:flex-row sm:items-center items-start gap-4 mb-4">
           <img
             src={formData.profileImg || avatarImg}
             alt="avatar image"
-            className="w-32 h-32 object-cover rounded-full"
+            className="w-20 h-20 sm:w-32 sm:h-32 object-cover rounded-full shrink-0"
           />
-          <div className="ml-7">
-            <h3 className="text-2xl font-semibold">
+          <div className="ml-0 sm:ml-7 min-w-0">
+            <h3 className="text-xl sm:text-2xl font-semibold break-words">
               {formData?.username || "N/A"}
             </h3>
-            <p className="text-gray-700">{formData?.bio || "N/A"}</p>
-            <p className="text-gray-700">{formData?.profession || "N/A"}</p>
+            <p className="text-gray-700 break-words">{formData?.bio || "N/A"}</p>
+            <p className="text-gray-700 break-words">{formData?.profession || "N/A"}</p>
           </div>
           <button
             onClick={() => setIsModalOpen(true)}
-            className="ml-auto text-blue-500 hover:text-blue-700"
+            className="sm:ml-auto text-blue-500 hover:text-blue-700"
           >
             <i className="ri-edit-box-line text-xl"></i>
           </button>
@@ -84,8 +84,8 @@ const UserProfile = () => {
 
       {/* Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center z-50">
-          <div className="bg-white rounded-lg p-6 md:w-1/3 max-w-xl mx-auto relative">
+        <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center z-50 p-4">
+          <div className="bg-white rounded-lg p-4 sm:p-6 w-full sm:max-w-md md:w-1/3 md:max-w-xl mx-auto relative max-h-[90vh] overflow-y-auto">
             <button
               onClick={() => setIsModalOpen(false)}
               className="absolute top-3 right-3 text-gray-500 size-8 hover:text-black"

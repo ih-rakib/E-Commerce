@@ -46,14 +46,14 @@ const CartModal = ({ products, isOpen, onCartClose }) => {
         >
 
             <div
-                className="fixed right-0 top-0 w-full sm:w-2/3 md:w-1/3 bg-white h-full overflow-y-auto transition-transform translate-x-0"
+                className="fixed right-0 top-0 w-full max-w-full sm:w-2/3 md:w-1/3 bg-white h-full overflow-y-auto transition-transform translate-x-0"
                 style={{ transition: 'transform 300ms cubic-bezier(0.23, 0.47, 0.41, 0.93)' }}
                 onClick={(e) => e.stopPropagation()}
             >
                 <div className="p-4 mt-4">
                     <div className="flex justify-between items-center mb-5">
                         <h4 className="text-xl font-semibold">Your Cart: {products.length} items</h4>
-                        <button onClick={() => onCartClose()} aria-label="Close cart"><i className="ri-close-large-fill font-bold text-xl"></i></button>
+                        <button onClick={() => onCartClose()} aria-label="Close cart" className="min-w-[44px] min-h-[44px] inline-flex items-center justify-center"><i className="ri-close-large-fill font-bold text-xl"></i></button>
                     </div>
 
                     {/* cart details */}
@@ -82,9 +82,9 @@ const CartModal = ({ products, isOpen, onCartClose }) => {
                                         </div>
 
                                         <div className="flex items-center justify-start gap-2 pl-9">
-                                            <button onClick={() => handleQuantity('decrement', pid)} aria-label="Decrease quantity" className="size-9 flex items-center justify-center rounded bg-gray-200 text-gray-800 hover:bg-slate-600 hover:text-white text-lg">-</button>
+                                            <button onClick={() => handleQuantity('decrement', pid)} aria-label="Decrease quantity" className="size-11 flex items-center justify-center rounded bg-gray-200 text-gray-800 hover:bg-slate-600 hover:text-white text-lg">-</button>
                                             <span className="px-2 min-w-8 text-center" aria-live="polite">{product.quantity}</span>
-                                            <button onClick={() => handleQuantity('increment', pid)} aria-label="Increase quantity" className="size-9 flex items-center justify-center rounded bg-gray-200 text-gray-800 hover:bg-slate-600 hover:text-white text-lg">+</button>
+                                            <button onClick={() => handleQuantity('increment', pid)} aria-label="Increase quantity" className="size-11 flex items-center justify-center rounded bg-gray-200 text-gray-800 hover:bg-slate-600 hover:text-white text-lg">+</button>
                                         </div>
                                     </div>
                                     );

@@ -64,27 +64,28 @@ const ManageOrders = () => {
   };
 
   return (
-    <div className="container p-6">
+    <div className="container p-4 sm:p-6 min-w-0 max-w-full">
       <h3 className="font-semibold text-base text-blueGray-700 mb-4">
         Manage Orders
       </h3>
-      <table className="min-w-full bg-white border border-gray-200 rounded-md">
+      <div className="overflow-x-auto -mx-1 sm:mx-0 rounded-md border border-gray-200 sm:border-0">
+      <table className="min-w-full bg-white border border-gray-200 rounded-md text-sm">
         <thead className="bg-gray-100">
           <tr>
-            <th className="py-3 px-4 border-b">Order Id</th>
-            <th className="py-3 px-4 border-b">Customer</th>
-            <th className="py-3 px-4 border-b">Status</th>
-            <th className="py-3 px-4 border-b">Date</th>
-            <th className="py-3 px-4 border-b">Action</th>
+            <th className="py-2 px-3 sm:py-3 sm:px-4 border-b whitespace-nowrap text-left">Order Id</th>
+            <th className="py-2 px-3 sm:py-3 sm:px-4 border-b whitespace-nowrap text-left">Customer</th>
+            <th className="py-2 px-3 sm:py-3 sm:px-4 border-b whitespace-nowrap text-left">Status</th>
+            <th className="py-2 px-3 sm:py-3 sm:px-4 border-b whitespace-nowrap text-left">Date</th>
+            <th className="py-2 px-3 sm:py-3 sm:px-4 border-b whitespace-nowrap text-left">Action</th>
           </tr>
         </thead>
         <tbody>
           {orders &&
             orders.map((order, index) => (
               <tr key={index}>
-                <td className="py-3 px-4 border-b">{order?.orderId}</td>
-                <td className="py-3 px-4 border-b">{order?.email}</td>
-                <td className="py-3 px-4 border-b">
+                <td className="py-2 px-3 sm:py-3 sm:px-4 border-b whitespace-nowrap break-all max-w-[140px] sm:max-w-none overflow-hidden text-ellipsis">{order?.orderId}</td>
+                <td className="py-2 px-3 sm:py-3 sm:px-4 border-b whitespace-nowrap break-all max-w-[140px] sm:max-w-none overflow-hidden text-ellipsis">{order?.email}</td>
+                <td className="py-2 px-3 sm:py-3 sm:px-4 border-b whitespace-nowrap">
                   <span
                     className={`inline-block px-2 text-xs text-white rounded-full ${getStatusColor(
                       order?.status
@@ -93,10 +94,10 @@ const ManageOrders = () => {
                     {order?.status}
                   </span>
                 </td>
-                <td className="py-3 px-4 border-b">
+                <td className="py-2 px-3 sm:py-3 sm:px-4 border-b whitespace-nowrap">
                   {formateDate(order?.updatedAt)}
                 </td>
-                <td className="py-3 px-4 border-b">
+                <td className="py-2 px-3 sm:py-3 sm:px-4 border-b whitespace-nowrap">
                   {/* View Icon */}
                   <Link
                     to={`/orders/${order?._id}`}
@@ -125,6 +126,7 @@ const ManageOrders = () => {
             ))}
         </tbody>
       </table>
+      </div>
 
       {/* order modal */}
       {selectedOrder && (

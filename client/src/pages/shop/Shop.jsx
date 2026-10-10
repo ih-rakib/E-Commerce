@@ -101,15 +101,15 @@ const Shop = () => {
 
                         {/* pagination controls */}
                         <div className="mt-6 flex justify-center flex-wrap gap-2">
-                            <button type="button" aria-label="Previous page" onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1} className="px-4 py-2 bg-gray-300 text-gray-700 rounded-md mr-2 disabled:opacity-50">prev</button>
+                            <button type="button" aria-label="Previous page" onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1} className="px-4 py-2 min-h-[44px] bg-gray-300 text-gray-700 rounded-md mr-2 disabled:opacity-50">prev</button>
 
                             {
                                 [...Array(pageCount)].map((_, index) => (
-                                    <button type="button" aria-label={`Go to page ${index + 1}`} aria-current={currentPage === index + 1 ? "page" : undefined} onClick={() => handlePageChange(index + 1)} key={index} className={`px-4 py-2 ${currentPage === index + 1 ? 'bg-slate-800 text-white' : 'bg-gray-300 text-gray-800'} rounded-md mx-1`}>{index + 1}</button>
+                                    <button type="button" aria-label={`Go to page ${index + 1}`} aria-current={currentPage === index + 1 ? "page" : undefined} onClick={() => handlePageChange(index + 1)} key={index} className={`px-4 py-2 min-h-[44px] min-w-[44px] ${currentPage === index + 1 ? 'bg-slate-800 text-white' : 'bg-gray-300 text-gray-800'} rounded-md mx-1`}>{index + 1}</button>
                                 ))
                             }
 
-                            <button type="button" aria-label="Next page" onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === pageCount} className="px-4 py-2 bg-gray-300 text-gray-700 rounded-md ml-2 disabled:opacity-50">next</button>
+                            <button type="button" aria-label="Next page" onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === pageCount} className="px-4 py-2 min-h-[44px] bg-gray-300 text-gray-700 rounded-md ml-2 disabled:opacity-50">next</button>
                         </div>
                     </div>
                 </div>

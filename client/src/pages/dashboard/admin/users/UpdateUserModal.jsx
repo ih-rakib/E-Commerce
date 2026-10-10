@@ -20,8 +20,8 @@ const UpdateUserModal = ({ user, onClose, onRoleUpdate }) => {
   if (error) return <div>Something went wrong, please try again!</div>;
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80">
-      <div className="bg-white p-4 rounded shadow-lg w-1/3">
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 p-4 z-50">
+      <div className="bg-white p-4 sm:p-4 rounded shadow-lg w-full sm:max-w-md max-w-full max-h-[90vh] overflow-y-auto">
         <h2 className="text-xl mb-4">Edit User Role</h2>
         <div className="mb-4 space-y-4">
           <label className="block text-sm font-medium text-gray-700">

@@ -72,15 +72,15 @@ const AdminStatsChart = ({ stats }) => {
   };
 
   return (
-    <div className="mt-12 space-y-12">
-      <h2 className="text-xl font-semibold mb-4">Admin Stats Overview</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="mt-12 space-y-12 min-w-0 max-w-full">
+      <h2 className="text-lg sm:text-xl font-semibold mb-4">Admin Stats Overview</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 min-w-0">
         {/* pie chart */}
-        <div className="max-h-96 md:h-96 w-full">
+        <div className="h-72 sm:h-80 md:h-96 w-full max-w-full min-w-0 overflow-hidden">
           <Pie data={pieData} options={options}></Pie>
         </div>
         {/* line chart */}
-        <div className="max-h-96 md:h-96 w-full">
+        <div className="h-72 sm:h-80 md:h-96 w-full max-w-full min-w-0 overflow-hidden">
           <Line data={lineData} options={options}></Line>
         </div>
       </div>

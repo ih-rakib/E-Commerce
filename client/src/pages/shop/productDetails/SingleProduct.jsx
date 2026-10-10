@@ -50,7 +50,7 @@ const SingleProduct = () => {
       <section className="section__container bg-primary-light">
         <h2 className="section__header uppercase">Single Product</h2>
 
-        <div className="section__subheader space-x-2">
+        <div className="section__subheader flex flex-wrap items-center justify-center gap-x-2 gap-y-1 break-words">
           <span className="hover:text-primary">
             <Link to="/">home</Link>
           </span>
@@ -101,9 +101,9 @@ const SingleProduct = () => {
             {/* quantity selector */}
             <div className="flex items-center gap-3 mt-6 flex-wrap">
               <span className="font-medium">Quantity:</span>
-              <button type="button" aria-label="Decrease quantity" onClick={() => setQuantity((q) => Math.max(1, q - 1))} className="size-10 rounded bg-gray-200 hover:bg-slate-600 hover:text-white text-lg">-</button>
+              <button type="button" aria-label="Decrease quantity" onClick={() => setQuantity((q) => Math.max(1, q - 1))} className="size-11 rounded bg-gray-200 hover:bg-slate-600 hover:text-white text-lg">-</button>
               <span aria-live="polite" className="min-w-8 text-center">{quantity}</span>
-              <button type="button" aria-label="Increase quantity" onClick={() => setQuantity((q) => Math.min(99, q + 1))} className="size-10 rounded bg-gray-200 hover:bg-slate-600 hover:text-white text-lg">+</button>
+              <button type="button" aria-label="Increase quantity" onClick={() => setQuantity((q) => Math.min(99, q + 1))} className="size-11 rounded bg-gray-200 hover:bg-slate-600 hover:text-white text-lg">+</button>
             </div>
 
             <button

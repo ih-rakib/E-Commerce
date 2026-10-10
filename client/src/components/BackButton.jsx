@@ -26,7 +26,7 @@ const BackButton = ({ label = "Back", fallback = "/", variant = "link", classNam
       type="button"
       onClick={handleBack}
       aria-label="Go back to previous page"
-      className={`inline-flex items-center gap-1.5 text-sm font-medium transition ${styles} ${className}`}
+      className={`inline-flex items-center gap-1.5 text-sm font-medium transition min-h-[44px] py-2 ${styles} ${className}`}
     >
       <i className="ri-arrow-left-line" aria-hidden="true"></i>
       {label}

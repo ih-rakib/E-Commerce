@@ -17,7 +17,7 @@ const UserOrders = () => {
 
   return (
     <section className="py-1 bg-blueGray-50">
-      <div className="w-full xl:w-8/12 mb-12 xl:mb-0 px-4 mx-auto">
+      <div className="w-full max-w-full xl:w-8/12 mb-12 xl:mb-0 px-2 sm:px-4 mx-auto">
         <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded ">
           <div className="rounded-t mb-0 px-4 py-3 border-0">
             <div className="flex flex-wrap items-center">
@@ -41,22 +41,22 @@ const UserOrders = () => {
             <table className="items-center bg-transparent w-full border-collapse ">
               <thead>
                 <tr>
-                  <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                  <th className="px-3 sm:px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                     #
                   </th>
-                  <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                  <th className="px-3 sm:px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                     Order ID
                   </th>
-                  <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                  <th className="px-3 sm:px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                     Date
                   </th>
-                  <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                  <th className="px-3 sm:px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                     Status
                   </th>
-                  <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                  <th className="px-3 sm:px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                     Total
                   </th>
-                  <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                  <th className="px-3 sm:px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                     View Order
                   </th>
                 </tr>
@@ -67,16 +67,16 @@ const UserOrders = () => {
                   orders.map((order, index) => {
                     return (
                       <tr key={index}>
-                        <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700 ">
+                        <th className="border-t-0 px-3 sm:px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700 ">
                           {index + 1}
                         </th>
-                        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">
+                        <td className="border-t-0 px-3 sm:px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">
                           {order?.orderId}
                         </td>
-                        <td className="border-t-0 px-6 align-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                        <td className="border-t-0 px-3 sm:px-6 align-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                           {new Date(order?.createdAt).toLocaleDateString()}
                         </td>
-                        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                        <td className="border-t-0 px-3 sm:px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                           <span
                             className={`p-1 rounded ${
                               order?.status === "completed"
@@ -92,10 +92,10 @@ const UserOrders = () => {
                           </span>
                         </td>
 
-                        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                        <td className="border-t-0 px-3 sm:px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                           {order?.amount}
                         </td>
-                        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                        <td className="border-t-0 px-3 sm:px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                           <Link
                             to={`/orders/${order._id}`}
                             className="underline hover:text-primary"

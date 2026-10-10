@@ -17,10 +17,10 @@ const UserPayments = () => {
   const orders = ordersData.orders || {};
   const totalPayments = orders.reduce((acc, order) => acc + order.amount, 0);
   return (
-    <div className="py-6 px-4">
-      <h3 className="text-xl font-semibold mb-4">Total Payments</h3>
-      <div>
-        <p className="text-lg font-medium text-gray-800 mb-5">
+    <div className="py-6 px-4 min-w-0 max-w-full">
+      <h3 className="text-lg sm:text-xl font-semibold mb-4">Total Payments</h3>
+      <div className="min-w-0">
+        <p className="text-base sm:text-lg font-medium text-gray-800 mb-5 break-words">
           Total Spent: ${totalPayments ? totalPayments : 0}
         </p>
         <ul>
@@ -35,8 +35,8 @@ const UserPayments = () => {
                     Amount: ${item?.amount?.toFixed(2)}
                   </span>
                 </div>
-                <div className="flex md:flex-row items-center space-x-2">
-                  <span>{new Date(item?.createdAt).toLocaleString()} |</span>
+                <div className="flex flex-col sm:flex-row sm:items-center items-start gap-1 sm:gap-0 sm:space-x-2 min-w-0">
+                  <span className="break-words">{new Date(item?.createdAt).toLocaleString()} <span className="hidden sm:inline">|</span></span>
                   <p className="text-gray-600">
                     status:
                     <span

@@ -13,10 +13,10 @@ const AdminMain = () => {
   if (error) return <div>Failed to load stats!</div>;
 
   return (
-    <div className="p-0">
-      <div>
-        <h1 className="text-2xl font-semibold mb-4">Admin Dashboard</h1>
-        <p className="text-gray-500">
+    <div className="p-0 min-w-0 max-w-full">
+      <div className="min-w-0">
+        <h1 className="text-xl sm:text-2xl font-semibold mb-4">Admin Dashboard</h1>
+        <p className="text-gray-500 break-words">
           Hi {user?.username}! Welcome to Admin Dashboard
         </p>
         <AdminStats stats={stats}></AdminStats>

@@ -92,9 +92,9 @@ const AddProduct = () => {
   };
 
   return (
-    <div className="container mx-auto mt-8">
-      <h2 className="text-2xl font-semibold mb-6">Add New Product</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
+    <div className="container mx-auto mt-2 sm:mt-8 px-1 sm:px-0 min-w-0 max-w-full">
+      <h2 className="text-xl sm:text-2xl font-semibold mb-6">Add New Product</h2>
+      <form onSubmit={handleSubmit} className="space-y-4 max-w-full">
         <TextInput
           label="Product Name"
           name="name"
@@ -145,7 +145,7 @@ const AddProduct = () => {
         </div>
 
         <div>
-          <button type="submit" className="add-product-btn">
+          <button type="submit" className="add-product-btn w-full sm:w-auto">
             Add Product
           </button>
         </div>

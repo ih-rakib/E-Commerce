@@ -96,9 +96,9 @@ const UpdateProduct = () => {
   if (fetchError) return <div>Error fetching product data.</div>;
 
   return (
-    <div className="container mx-auto mt-7">
-      <h2 className="text-2xl mb-6 font-semibold">Update Product</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
+    <div className="container mx-auto mt-2 sm:mt-7 px-1 sm:px-0 min-w-0 max-w-full">
+      <h2 className="text-xl sm:text-2xl mb-6 font-semibold">Update Product</h2>
+      <form onSubmit={handleSubmit} className="space-y-4 max-w-full">
         <TextInput
           label="Product Name"
           name="name"
@@ -149,7 +149,7 @@ const UpdateProduct = () => {
         </div>
 
         <div>
-          <button type="submit" className="add-product-btn">
+          <button type="submit" className="add-product-btn w-full sm:w-auto">
             {isUpdating ? "Updating..." : "Update Product"}
           </button>
         </div>

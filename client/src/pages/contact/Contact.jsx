@@ -20,14 +20,14 @@ const Contact = () => {
           <span aria-current="page" className="text-text-dark">Contact</span>
         </nav>
 
-        <div className="mx-auto max-w-md rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
+        <div className="mx-auto max-w-md w-full rounded-2xl border border-gray-200 bg-white p-5 sm:p-8 shadow-sm">
           <span className="mx-auto inline-flex size-12 items-center justify-center rounded-full bg-primary-light text-2xl text-primary">
             <i className="ri-send-plane-line" aria-hidden="true"></i>
           </span>
-          <h1 className="mt-4 text-xl font-bold text-text-dark">Taking you to our contact page…</h1>
-          <p className="mt-2 text-sm text-text-light">
+          <h1 className="mt-4 text-lg sm:text-xl font-bold text-text-dark">Taking you to our contact page…</h1>
+          <p className="mt-2 text-sm text-text-light break-words">
             You&apos;re being redirected to{" "}
-            <span className="font-medium text-text-dark">rakib-orion.vercel.app/contact</span>.
+            <span className="font-medium text-text-dark break-all">rakib-orion.vercel.app/contact</span>.
           </p>
           <div className="mt-4 flex justify-center" aria-hidden="true">
             <i className="ri-loader-4-line animate-spin text-2xl text-primary"></i>

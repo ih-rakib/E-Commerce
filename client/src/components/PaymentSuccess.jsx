@@ -89,15 +89,15 @@ const PaymentSuccess = () => {
   ];
 
   return (
-    <div className="mt-[200px]">
-      <section className="section__container rounded p-6">
-        <h2 className="text-2xl font-semibold mb-4">
+    <div className="mt-24 sm:mt-[200px]">
+      <section className="section__container rounded p-6 max-w-full overflow-x-hidden">
+        <h2 className="text-2xl font-semibold mb-4 break-words">
           Payment: {order?.status}
         </h2>
-        <p className="mb-4">Order id: {order?.orderId}</p>
+        <p className="mb-4 break-all">Order id: {order?.orderId}</p>
         <p className="mb-8">Status: {order?.status}</p>
 
-        <ol className="sm:flex items-center relative">
+        <ol className="sm:flex sm:items-center relative">
           {steps.map((step, index) => (
             <TimeLineSteps
               key={index}

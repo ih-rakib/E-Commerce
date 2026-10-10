@@ -1260,3 +1260,140 @@ select:focus {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ---------- Dashboard / tables / modals: small-screen fixes (mobile only) ---------- */
+@media (max-width: 640px) {
+  /* Prevent dashboard tables from forcing horizontal page scroll */
+  table {
+    font-size: 0.75rem;
+  }
+
+  /* Product / order / user tables inside the dashboard scroll internally */
+  .overflow-x-auto > table {
+    min-width: 560px;
+  }
+
+  /* Long IDs / emails truncate instead of blowing out the viewport */
+  td {
+    overflow-wrap: break-word;
+  }
+
+  /* Add/Update product inputs: avoid iOS auto-zoom + keep full width */
+  .add-product-InputCSS {
+    font-size: 16px;
+    max-width: 100%;
+  }
+
+  .add-product-btn {
+    width: 100%;
+  }
+
+  /* Chart canvases never exceed their card on phones */
+  canvas {
+    max-width: 100% !important;
+  }
+}
+
+/* ---------- Mobile storefront fixes (small screens only; desktop untouched) ---------- */
+
+/* Footer columns: stack links vertically so they don't run together inline */
+.footer__col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.55rem;
+  min-width: 0;
+}
+
+.footer__col > a,
+.footer__col > p {
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+
+.footer__socials {
+  width: 100%;
+}
+
+@media (max-width: 639px) {
+  /* Payment timeline icon discs: 24px circle clips the 20px glyph on mobile */
+  .section__container ol li .w-6.h-6 {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  /* Hero promo overlay: keep text inside the card instead of pushed off right */
+  .hero__content {
+    left: 1rem;
+    right: 1rem;
+    transform: translateY(-50%);
+    max-width: none;
+  }
+
+  /* Banner/deals art: static flow image instead of absolute-positioned crop */
+  .header__image,
+  .deals__image {
+    min-height: 0;
+  }
+
+  .header__image img,
+  .deals__image img {
+    position: relative;
+    left: auto;
+    bottom: auto;
+    transform: none;
+    margin: 0 auto;
+    max-height: 300px;
+  }
+
+  /* Floating chat button: smaller corner footprint on phones */
+  .whatsapp-float {
+    right: 0.75rem;
+    bottom: 0.75rem;
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  nav {
+    gap: 0.5rem;
+    padding: 0.75rem;
+  }
+
+  .nav__logo a {
+    font-size: 1.3rem;
+  }
+
+  .nav__icons {
+    gap: 0.7rem;
+    flex-shrink: 0;
+  }
+
+  .nav__icons span a {
+    font-size: 1.15rem;
+  }
+}
+
+@media (max-width: 420px) {
+  /* Countdown: 4x70px + gaps overflow 320px viewports, shrink discs */
+  .deals__countdown {
+    gap: 0.5rem;
+  }
+
+  .deals__countdown__card {
+    height: 64px;
+    width: 64px;
+  }
+
+  .deals__countdown__card h4 {
+    font-size: 1.1rem;
+  }
+
+  .deals__countdown__card p {
+    font-size: 0.8rem;
+  }
+}

@@ -78,15 +78,15 @@ const UserDashboardMain = () => {
   };
 
   return (
-    <div className="p-6">
+    <div className="p-4 sm:p-6 min-w-0 max-w-full">
       <div>
-        <h1 className="text-2xl font-semibold mb-4">User Dashboard</h1>
-        <p className="text-gray-500">
+        <h1 className="text-xl sm:text-2xl font-semibold mb-4">User Dashboard</h1>
+        <p className="text-gray-500 break-words">
           Hello {user?.username}! Welcome to User Dashboard
         </p>
       </div>
       <UserStats stats={stats}></UserStats>
-      <div className="mb-6">
+      <div className="mb-6 min-w-0 overflow-x-auto">
         <Bar data={data} options={options}></Bar>
       </div>
     </div>

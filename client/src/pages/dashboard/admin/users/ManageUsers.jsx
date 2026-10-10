@@ -44,7 +44,7 @@ const ManageUsers = () => {
       {isLoading && <div>Loading...</div>}
       {error && <div>Error loading users!</div>}
       <section className="py-1 bg-blueGray-50">
-        <div className="w-full xl:w-8/12 mb-12 xl:mb-0 px-4 mx-auto">
+        <div className="w-full max-w-full xl:w-8/12 mb-12 xl:mb-0 px-2 sm:px-4 mx-auto">
           <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded ">
             <div className="rounded-t mb-0 px-4 py-3 border-0">
               <div className="flex flex-wrap items-center">
@@ -60,19 +60,19 @@ const ManageUsers = () => {
               <table className="items-center bg-transparent w-full border-collapse ">
                 <thead>
                   <tr>
-                    <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                    <th className="px-3 sm:px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                       #
                     </th>
-                    <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                    <th className="px-3 sm:px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                       Email
                     </th>
-                    <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                    <th className="px-3 sm:px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                       Role
                     </th>
-                    <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                    <th className="px-3 sm:px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                       Edit
                     </th>
-                    <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                    <th className="px-3 sm:px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                       Action
                     </th>
                   </tr>
@@ -81,13 +81,13 @@ const ManageUsers = () => {
                 <tbody>
                   {users?.map((user, index) => (
                     <tr key={index}>
-                      <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700 ">
+                      <th className="border-t-0 px-3 sm:px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700 ">
                         {index + 1}
                       </th>
-                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">
+                      <td className="border-t-0 px-3 sm:px-6 align-middle border-l-0 border-r-0 text-xs p-4 break-all max-w-[160px] sm:max-w-none overflow-hidden text-ellipsis whitespace-nowrap ">
                         {user?.email || "N/A"}
                       </td>
-                      <td className="border-t-0 px-6 align-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                      <td className="border-t-0 px-3 sm:px-6 align-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                         <span
                           className={`rounded-full py-[2px] px-3 ${
                             user?.role === "admin"
@@ -99,7 +99,7 @@ const ManageUsers = () => {
                         </span>
                       </td>
 
-                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                      <td className="border-t-0 px-3 sm:px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                         <button
                           onClick={() => handleEditUser(user)}
                           disabled={user?.role === "admin"}
@@ -113,7 +113,7 @@ const ManageUsers = () => {
                         </button>
                       </td>
 
-                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                      <td className="border-t-0 px-3 sm:px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                         <button
                           onClick={() => handleDeleteUser(user._id)}
                           disabled={user?.role === "admin"}

@@ -28,14 +28,14 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className="space-y-5 md:h-screen mx-5 my-2 flex flex-col justify-between bg-white">
+    <div className="space-y-4 md:space-y-5 md:h-auto lg:h-screen mx-4 sm:mx-5 my-2 flex flex-col justify-between bg-white">
       <div>
         <div className="nav__logo">
           <Link to="/">Galore</Link>
           <p className="text-sm">Admin Dashboard</p>
         </div>
-        <hr className="mt-5" />
-        <ul className="space-y-5 pt-5">
+        <hr className="mt-4 sm:mt-5" />
+        <ul className="flex flex-row flex-wrap gap-x-5 gap-y-3 pt-4 md:flex-col md:gap-0 md:space-y-5 md:pt-5 text-sm sm:text-base">
           {navItems.map((item) => (
             <li key={item.path}>
               <NavLink

@@ -24,8 +24,8 @@ const UpdateOrderModal = ({ order, isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80">
-      <div className="bg-white p-4 rounded shadow-lg w-full sm:w-96">
+    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 p-4 z-50">
+      <div className="bg-white p-4 sm:p-4 rounded shadow-lg w-full sm:w-96 max-w-full max-h-[90vh] overflow-y-auto">
         <h2 className="text-xl mb-4">Update Order Status</h2>
 
         {error && (

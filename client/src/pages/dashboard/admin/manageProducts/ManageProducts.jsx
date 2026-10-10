@@ -59,7 +59,7 @@ const ManageProducts = () => {
       {isLoading && <div>Loading...</div>}
       {error && <div>Error loading products!</div>}
       <section className="py-1 bg-blueGray-50">
-        <div className="w-full xl:w-8/12 mb-12 xl:mb-0 px-4 mx-auto">
+        <div className="w-full max-w-full xl:w-8/12 mb-12 xl:mb-0 px-2 sm:px-4 mx-auto">
           <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded ">
             <div className="rounded-t mb-0 px-4 py-3 border-0">
               <div className="flex flex-wrap items-center">
@@ -79,19 +79,19 @@ const ManageProducts = () => {
               <table className="items-center bg-transparent w-full border-collapse ">
                 <thead>
                   <tr>
-                    <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                    <th className="px-3 sm:px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                       #
                     </th>
-                    <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                    <th className="px-3 sm:px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                       Product Name
                     </th>
-                    <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                    <th className="px-3 sm:px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                       Published Date
                     </th>
-                    <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                    <th className="px-3 sm:px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                       Edit
                     </th>
-                    <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                    <th className="px-3 sm:px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                       Action
                     </th>
                   </tr>
@@ -100,21 +100,21 @@ const ManageProducts = () => {
                 <tbody>
                   {products?.map((product, index) => (
                     <tr key={index}>
-                      <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700 ">
+                      <th className="border-t-0 px-3 sm:px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700 ">
                         {index + 1}
                       </th>
-                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">
+                      <td className="border-t-0 px-3 sm:px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">
                         {product?.name}
                       </td>
-                      <td className="border-t-0 px-6 align-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                      <td className="border-t-0 px-3 sm:px-6 align-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                         {formateDate(product?.createdAt)}
                       </td>
-                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                      <td className="border-t-0 px-3 sm:px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                         <Link to={`/dashboard/update-product/${product._id}`}>
                           <i class="ri-edit-2-line text-lg text-green-500 hover:text-green-800 cursor-pointer"></i>
                         </Link>
                       </td>
-                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                      <td className="border-t-0 px-3 sm:px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
                         <button
                           onClick={() => handleDeleteProduct(product._id)}
                         >
@@ -130,7 +130,7 @@ const ManageProducts = () => {
         </div>
 
         {/* pagination */}
-        <div className="mt-6 flex items-center justify-center">
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-2 px-2">
           <button
             onClick={() => handlePage(currentPage - 1)}
             disabled={currentPage === 1}

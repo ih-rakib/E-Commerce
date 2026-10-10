@@ -64,12 +64,12 @@ const OrderDetails = () => {
   ];
 
   return (
-    <section className="section__container rounded p-6">
-      <h2 className="text-2xl font-semibold mb-4">Payment {order?.status}</h2>
-      <p className="mb-4">Order id: {order?.orderId}</p>
+    <section className="section__container rounded p-4 sm:p-6 !py-8 sm:!py-12 max-w-full min-w-0 overflow-hidden">
+      <h2 className="text-xl sm:text-2xl font-semibold mb-4 break-words">Payment {order?.status}</h2>
+      <p className="mb-4 break-all">Order id: {order?.orderId}</p>
       <p className="mb-8">Status: {order?.status}</p>
 
-      <ol className="sm:flex items-center relative">
+      <ol className="sm:flex flex-col sm:flex-row gap-6 sm:gap-0 items-start relative">
         {steps.map((step, index) => (
           <TimeLineSteps
             key={index}

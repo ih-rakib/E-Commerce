@@ -114,7 +114,7 @@ const Navbar = () => {
             <nav className="max-w-screen-2xl mx-auto px-4 flex justify-between items-center">
                 {/* Mobile hamburger */}
                 <button
-                    className="md:hidden text-2xl p-2 -ml-2"
+                    className="md:hidden text-2xl p-2 -ml-2 min-w-[44px] min-h-[44px] inline-flex items-center justify-center"
                     onClick={() => setIsMobileMenuOpen((v) => !v)}
                     aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
                     aria-expanded={isMobileMenuOpen}
@@ -160,7 +160,7 @@ const Navbar = () => {
 
                                 {
                                     isDropdownOpen && (
-                                        <div className="absolute right-0 mt-3 p-4 w-52 bg-white border border-gray-300 rounded-lg shadow-lg z-50">
+                                        <div className="absolute right-0 mt-3 p-4 w-52 max-w-[calc(100vw-2rem)] bg-white border border-gray-300 rounded-lg shadow-lg z-50">
                                             <ul className="font-medium space-y-4 p-2">
                                                 {dropdownMenus.map((menu, index) => renderDropdownItem(menu, index))}
                                                 <li><button onClick={handleLogout} className="dropdown-items w-full text-left">Logout</button></li>
@@ -180,11 +180,11 @@ const Navbar = () => {
 
             {/* Mobile menu */}
             {isMobileMenuOpen && (
-                <ul className="md:hidden px-6 pb-4 space-y-3 bg-white border-t">
-                    <li><Link to="/" onClick={() => setIsMobileMenuOpen(false)} className="block py-1">Home</Link></li>
-                    <li><Link to="/shop" onClick={() => setIsMobileMenuOpen(false)} className="block py-1">Shop</Link></li>
-                    <li><Link to="/search" onClick={() => setIsMobileMenuOpen(false)} className="block py-1">Search</Link></li>
-                    <li><Link to="/contact" onClick={() => setIsMobileMenuOpen(false)} className="block py-1">Contact</Link></li>
+                <ul className="md:hidden px-6 pb-4 space-y-1 bg-white border-t">
+                    <li><Link to="/" onClick={() => setIsMobileMenuOpen(false)} className="block py-3 min-h-[44px]">Home</Link></li>
+                    <li><Link to="/shop" onClick={() => setIsMobileMenuOpen(false)} className="block py-3 min-h-[44px]">Shop</Link></li>
+                    <li><Link to="/search" onClick={() => setIsMobileMenuOpen(false)} className="block py-3 min-h-[44px]">Search</Link></li>
+                    <li><Link to="/contact" onClick={() => setIsMobileMenuOpen(false)} className="block py-3 min-h-[44px]">Contact</Link></li>
                 </ul>
             )}
 
