@@ -48,6 +48,38 @@ app.get("/", (req, res) => {
   res.send("backend is running");
 });
 
+// Database connection for serverless deployments.
+// Locally, main() connects once and then listens. On Vercel this file is
+// imported (require.main !== module), so main() never runs and MongoDB
+// would never connect — every data route then hangs until the function
+// times out. Connect lazily on the first data request and cache the
+// in-flight promise on the shared mongoose instance, so warm invocations
+// reuse the open connection.
+let dbConnectPromise = null;
+function ensureDb() {
+  if (mongoose.connection.readyState === 1) return Promise.resolve();
+  if (!dbConnectPromise) {
+    dbConnectPromise = mongoose
+      .connect(process.env.MONGO_URL, { serverSelectionTimeoutMS: 8000 })
+      .catch((err) => {
+        dbConnectPromise = null;
+        throw err;
+      });
+  }
+  return dbConnectPromise;
+}
+app.use(async (req, res, next) => {
+  if (!req.path.startsWith("/api") && req.path !== "/upload-image") {
+    return next();
+  }
+  try {
+    await ensureDb();
+    next();
+  } catch (err) {
+    next(err);
+  }
+});
+
 // All routes
 const authRoutes = require("./src/users/user.route");
 const productRoutes = require("./src/products/products.route");
@@ -87,7 +119,9 @@ app.use((err, req, res, next) => {
 });
 
 async function main() {
-  await mongoose.connect(process.env.MONGO_URL);
+  await mongoose.connect(process.env.MONGO_URL, {
+    serverSelectionTimeoutMS: 8000,
+  });
 }
 
 if (require.main === module) {
